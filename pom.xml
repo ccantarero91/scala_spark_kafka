@@ -8,40 +8,23 @@
     <artifactId>proyecto_scala_spark</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <properties>
-
         <maven.compiler.source>1.8</maven.compiler.source>
-
         <maven.compiler.target>1.8</maven.compiler.target>
-
         <encoding>UTF-8</encoding>
-
         <scala.version>2.11.8</scala.version>
-
         <scala.compat.version>2.11</scala.compat.version>
-
         <cdh.version>5.11.0</cdh.version>
-
         <hadoop.version>2.6.0-cdh${cdh.version}</hadoop.version>
-
-        <spark.version>2.1.0.cloudera1</spark.version>
-
+        <spark.version>2.3.0.cloudera4</spark.version>
         <scala.binary.version>2.11</scala.binary.version>
-
         <java.version>1.8</java.version>
-
-        <kafka.version>0-9</kafka.version>
-
+        <kafka.version>1.4.1</kafka.version>
         <spark.kafka.version>${spark.version}</spark.kafka.version>
-
     </properties>
 
-
     <repositories>
-
         <repository>
-
             <id>apache-repo</id>
             <name>Apache Repository</name>
             <url>https://repository.apache.org/content/repositories/releases</url>
@@ -52,97 +35,68 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-
         <repository>
-
             <id>cloudera-repo-releases</id>
-
             <url>https://repository.cloudera.com/artifactory/cloudera-repos</url>
-
         </repository>
-
     </repositories>
 
-
     <dependencies>
-
         <dependency> <!-- Scala -->
-
             <groupId>org.scala-lang</groupId>
-
             <artifactId>scala-library</artifactId>
-
             <version>${scala.version}</version>
-
         </dependency>
-
 
         <dependency> <!-- Core Spark -->
-
             <groupId>org.apache.spark</groupId>
-
             <artifactId>spark-core_${scala.binary.version}</artifactId>
-
             <version>${spark.version}</version>
-
         </dependency>
-
 
         <dependency> <!-- Spark SQL -->
-
             <groupId>org.apache.spark</groupId>
-
             <artifactId>spark-sql_${scala.binary.version}</artifactId>
-
             <version>${spark.version}</version>
-
         </dependency>
-
 
         <dependency> <!-- Hadoop -->
-
             <groupId>org.apache.hadoop</groupId>
-
             <artifactId>hadoop-client</artifactId>
-
             <version>${hadoop.version}</version>
-
         </dependency>
-
 
         <dependency> <!-- Spark Streaming -->
-
             <groupId>org.apache.spark</groupId>
-
             <artifactId>spark-streaming_${scala.binary.version}</artifactId>
-
             <version>${spark.version}</version>
-
         </dependency>
-
 
         <dependency>
-
             <groupId>org.apache.kafka</groupId>
-
             <artifactId>kafka_2.11</artifactId>
-
-            <version>0.9.0.1</version>
-
+            <version>2.1.0-kafka-4.0.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql-kafka-0-10_2.11</artifactId>
+            <version>2.3.0.cloudera4</version>
+        </dependency>
 
+        <!-- Spark Streaming - Kafka -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <!--artifactId>spark-streaming-kafka-${kafka.version}_${scala.binary.version}</artifactId-->
+            <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+            <version>2.3.0.cloudera4</version>
+        </dependency>
 
         <dependency> <!-- Spark Streaming - Flume -->
-
             <groupId>org.apache.spark</groupId>
-
             <artifactId>spark-streaming-flume_${scala.binary.version}</artifactId>
-
             <version>${spark.version}</version>
-
         </dependency>
-
 
         <dependency> <!-- Jackson -->
             <groupId>org.codehaus.jackson</groupId>
@@ -150,127 +104,66 @@
             <version>1.9.13</version>
         </dependency>
 
-
         <!-- Test -->
-
         <dependency>
-
             <groupId>junit</groupId>
-
             <artifactId>junit</artifactId>
-
             <version>4.11</version>
-
             <scope>test</scope>
-
         </dependency>
-
         <dependency>
-
             <groupId>org.specs2</groupId>
-
             <artifactId>specs2-core_${scala.compat.version}</artifactId>
-
             <version>2.4.16</version>
-
             <scope>test</scope>
-
         </dependency>
-
         <dependency>
-
             <groupId>org.scalatest</groupId>
-
             <artifactId>scalatest_${scala.compat.version}</artifactId>
-
             <version>2.2.4</version>
-
             <scope>test</scope>
-
         </dependency>
-
     </dependencies>
 
-
     <build>
-
         <sourceDirectory>src/main/scala</sourceDirectory>
-
         <testSourceDirectory>src/test/scala</testSourceDirectory>
-
         <plugins>
-
             <plugin>
-
                 <!-- see http://davidb.github.com/scala-maven-plugin -->
-
                 <groupId>net.alchim31.maven</groupId>
-
                 <artifactId>scala-maven-plugin</artifactId>
-
                 <version>3.2.0</version>
-
                 <executions>
-
                     <execution>
-
                         <goals>
-
                             <goal>compile</goal>
-
                             <goal>testCompile</goal>
-
                         </goals>
-
                         <configuration>
-
                             <args>
-
                                 <arg>-dependencyfile</arg>
-
                                 <arg>${project.build.directory}/.scala_dependencies</arg>
-
                             </args>
-
                         </configuration>
-
                     </execution>
-
                 </executions>
-
             </plugin>
-
             <plugin>
-
                 <groupId>org.apache.maven.plugins</groupId>
-
                 <artifactId>maven-surefire-plugin</artifactId>
-
                 <version>2.18.1</version>
-
                 <configuration>
-
                     <useFile>false</useFile>
-
                     <disableXmlReport>true</disableXmlReport>
-
                     <!-- If you have classpath issue like NoDefClassError,... -->
-
                     <!-- useManifestOnlyJar>false</useManifestOnlyJar -->
-
                     <includes>
-
                         <include>**/*Test.*</include>
-
                         <include>**/*Suite.*</include>
-
                     </includes>
-
                 </configuration>
-
             </plugin>
-
         </plugins>
-
     </build>
 </project>
