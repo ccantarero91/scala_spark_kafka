@@ -1,0 +1,159 @@
+[cloudera@quickstart ~]$ kafka-console-consumer --bootstrap-server localhost:9092 --topic orange --from-beginning
+20/01/21 03:55:20 INFO utils.Log4jControllerRegistration$: Registered kafka:type=kafka.Log4jController MBean
+20/01/21 03:55:20 INFO consumer.ConsumerConfig: ConsumerConfig values:
+        auto.commit.interval.ms = 5000
+        auto.offset.reset = earliest
+        bootstrap.servers = [localhost:9092]
+        check.crcs = true
+        client.dns.lookup = default
+        client.id =
+        connections.max.idle.ms = 540000
+        default.api.timeout.ms = 60000
+        enable.auto.commit = false
+        exclude.internal.topics = true
+        fetch.max.bytes = 52428800
+        fetch.max.wait.ms = 500
+        fetch.min.bytes = 1
+        group.id = console-consumer-48914
+        heartbeat.interval.ms = 3000
+        interceptor.classes = []
+        internal.leave.group.on.close = true
+        isolation.level = read_uncommitted
+        key.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+        max.partition.fetch.bytes = 1048576
+        max.poll.interval.ms = 300000
+        max.poll.records = 500
+        metadata.max.age.ms = 300000
+        metric.reporters = []
+        metrics.num.samples = 2
+        metrics.recording.level = INFO
+        metrics.sample.window.ms = 30000
+        partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+        receive.buffer.bytes = 65536
+        reconnect.backoff.max.ms = 1000
+        reconnect.backoff.ms = 50
+        request.timeout.ms = 30000
+        retry.backoff.ms = 100
+        sasl.client.callback.handler.class = null
+        sasl.jaas.config = null
+        sasl.kerberos.kinit.cmd = /usr/bin/kinit
+        sasl.kerberos.min.time.before.relogin = 60000
+        sasl.kerberos.service.name = null
+        sasl.kerberos.ticket.renew.jitter = 0.05
+        sasl.kerberos.ticket.renew.window.factor = 0.8
+        sasl.login.callback.handler.class = null
+        sasl.login.class = null
+        sasl.login.refresh.buffer.seconds = 300
+        sasl.login.refresh.min.period.seconds = 60
+        sasl.login.refresh.window.factor = 0.8
+        sasl.login.refresh.window.jitter = 0.05
+        sasl.mechanism = GSSAPI
+        security.protocol = PLAINTEXT
+        send.buffer.bytes = 131072
+        session.timeout.ms = 10000
+        ssl.cipher.suites = null
+        ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+        ssl.endpoint.identification.algorithm = null
+        ssl.key.password = null
+        ssl.keymanager.algorithm = SunX509
+        ssl.keystore.location = null
+        ssl.keystore.password = null
+        ssl.keystore.type = JKS
+        ssl.protocol = TLS
+        ssl.provider = null
+        ssl.secure.random.implementation = null
+        ssl.trustmanager.algorithm = PKIX
+        ssl.truststore.location = null
+        ssl.truststore.password = null
+        ssl.truststore.type = JKS
+        value.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+
+20/01/21 03:55:20 INFO utils.AppInfoParser: Kafka version: 2.2.1-kafka-4.1.0
+20/01/21 03:55:20 INFO utils.AppInfoParser: Kafka commitId: unknown
+20/01/21 03:55:20 INFO consumer.KafkaConsumer: [Consumer clientId=consumer-1, groupId=console-consumer-48914] Subscribed to topic(s): orange
+20/01/21 03:55:20 INFO clients.Metadata: Cluster ID: Wi0SbpHUTLugoBr1OLFcpQ
+20/01/21 03:55:20 INFO internals.AbstractCoordinator: [Consumer clientId=consumer-1, groupId=console-consumer-48914] Discovered group coordinator quickstart.cloudera:9092 (id: 2147483614 rack: null)
+20/01/21 03:55:20 INFO internals.ConsumerCoordinator: [Consumer clientId=consumer-1, groupId=console-consumer-48914] Revoking previously assigned partitions []
+20/01/21 03:55:20 INFO internals.AbstractCoordinator: [Consumer clientId=consumer-1, groupId=console-consumer-48914] (Re-)joining group
+20/01/21 03:55:21 INFO internals.AbstractCoordinator: [Consumer clientId=consumer-1, groupId=console-consumer-48914] (Re-)joining group
+20/01/21 03:55:24 INFO internals.AbstractCoordinator: [Consumer clientId=consumer-1, groupId=console-consumer-48914] Successfully joined group with generation 1
+20/01/21 03:55:24 INFO internals.ConsumerCoordinator: [Consumer clientId=consumer-1, groupId=console-consumer-48914] Setting newly assigned partitions: orange-1, orange-0
+20/01/21 03:55:24 INFO internals.Fetcher: [Consumer clientId=consumer-1, groupId=console-consumer-48914] Resetting offset for partition orange-1 to offset 0.
+20/01/21 03:55:24 INFO internals.Fetcher: [Consumer clientId=consumer-1, groupId=console-consumer-48914] Resetting offset for partition orange-0 to offset 0.
+
+
+
+[cloudera@quickstart ~]$ kafka-console-producer --topic orange --broker-list localhost:9092
+20/01/21 03:59:23 INFO utils.Log4jControllerRegistration$: Registered kafka:type=kafka.Log4jController MBean
+20/01/21 03:59:23 INFO producer.ProducerConfig: ProducerConfig values:
+	acks = 1
+	batch.size = 16384
+	bootstrap.servers = [localhost:9092]
+	buffer.memory = 33554432
+	client.dns.lookup = default
+	client.id = console-producer
+	compression.type = none
+	connections.max.idle.ms = 540000
+	delivery.timeout.ms = 120000
+	enable.idempotence = false
+	interceptor.classes = []
+	key.serializer = class org.apache.kafka.common.serialization.ByteArraySerializer
+	linger.ms = 1000
+	max.block.ms = 60000
+	max.in.flight.requests.per.connection = 5
+	max.request.size = 1048576
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	receive.buffer.bytes = 32768
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 1500
+	retries = 3
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 102400
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.timeout.ms = 60000
+	transactional.id = null
+	value.serializer = class org.apache.kafka.common.serialization.ByteArraySerializer
+
+20/01/21 03:59:23 INFO utils.AppInfoParser: Kafka version: 2.2.1-kafka-4.1.0
+20/01/21 03:59:23 INFO utils.AppInfoParser: Kafka commitId: unknown
+>20/01/21 03:59:23 INFO clients.Metadata: Cluster ID: Wi0SbpHUTLugoBr1OLFcpQ
+
+>pepe
+>
+>paco
+>utri es un crack
