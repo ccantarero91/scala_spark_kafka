@@ -123,6 +123,16 @@
             <version>2.2.4</version>
             <scope>test</scope>
         </dependency>
+        <!-- driver de mysql -->
+        <dependency>
+            <groupId>com.mysql.jdbc</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.34</version>
+            <type>jar</type>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/mysql-connector-java-5.1.34-bin.jar</systemPath>
+        </dependency>
+
     </dependencies>
 
     <build>
